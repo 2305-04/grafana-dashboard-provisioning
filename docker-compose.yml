@@ -1,0 +1,39 @@
+version: '3.9'
+services:
+  vector:
+    image: amazingjason/canopy-vector:latest
+    container_name: vector
+    volumes:
+      - vector_data:/var/lib/vector
+    ports:
+      - 8383:8383
+  clickhouse:
+    image: facelessgladiator/canopy-clickhouse:latest
+    container_name: clickhouse
+    volumes:
+      - db_data:/var/lib/clickhouse
+      - db_logs:/var/log/clickhouse-server
+    ports:
+      - 9000:9000
+      - 8123:8123
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 262144
+        hard: 262144
+  grafana:
+    image: amazingjason/canopy-grafana:latest
+    container_name: grafana
+    environment:
+      - GF_INSTALL_PLUGINS=grafana-clickhouse-datasource
+    user: '501'
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning/:/etc/grafana/provisioning/ # prepend with copy/add and remove column between the two, use dockerfile to create image, upload to docker hub, then import like jason on line 25 with what i stored, line 31 is fine, 28 is fine
+    ports:
+      - 3001:3000
+volumes:
+  db_data:
+  db_logs:
+  grafana_data:
+  vector_data:

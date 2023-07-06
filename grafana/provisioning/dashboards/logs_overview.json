@@ -1,0 +1,2054 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_CLICKHOUSE",
+      "label": "ClickHouse",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "grafana-clickhouse-datasource",
+      "pluginName": "ClickHouse"
+    },
+    {
+      "name": "DS_EXPRESSION",
+      "label": "Expression",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "__expr__"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "datasource",
+      "id": "__expr__",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "gauge",
+      "name": "Gauge",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "10.0.2-cloud.1.94a6f396"
+    },
+    {
+      "type": "datasource",
+      "id": "grafana-clickhouse-datasource",
+      "name": "ClickHouse",
+      "version": "3.1.0"
+    },
+    {
+      "type": "panel",
+      "id": "piechart",
+      "name": "Pie chart",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [],
+      "targetBlank": false,
+      "title": "New link",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    }
+  ],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 3,
+      "panels": [],
+      "title": "Stats",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "${DS_CLICKHOUSE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "light-yellow",
+                "value": 1
+              },
+              {
+                "color": "light-orange",
+                "value": 5
+              },
+              {
+                "color": "light-red",
+                "value": 10
+              },
+              {
+                "color": "dark-red",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 5,
+        "y": 1
+      },
+      "id": 16,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.0.2-cloud.1.94a6f396",
+      "targets": [
+        {
+          "builderOptions": {
+            "fields": [],
+            "filters": [
+              {
+                "key": "timestamp",
+                "operator": "WITH IN DASHBOARD TIME RANGE",
+                "type": "datetime"
+              },
+              {
+                "condition": "AND",
+                "filterType": "custom",
+                "key": "sc_status",
+                "operator": "!=",
+                "type": "UInt32",
+                "value": 200
+              }
+            ],
+            "limit": 0,
+            "metrics": [
+              {
+                "aggregation": "count",
+                "field": "timestamp"
+              }
+            ],
+            "mode": "aggregate",
+            "table": "realtime_logs"
+          },
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "${DS_CLICKHOUSE}"
+          },
+          "hide": true,
+          "meta": {
+            "builderOptions": {
+              "fields": [],
+              "filters": [
+                {
+                  "key": "timestamp",
+                  "operator": "WITH IN DASHBOARD TIME RANGE",
+                  "type": "datetime"
+                },
+                {
+                  "condition": "AND",
+                  "filterType": "custom",
+                  "key": "sc_status",
+                  "operator": "!=",
+                  "type": "UInt32",
+                  "value": 200
+                }
+              ],
+              "limit": 0,
+              "metrics": [
+                {
+                  "aggregation": "count",
+                  "field": "timestamp"
+                }
+              ],
+              "mode": "aggregate",
+              "table": "realtime_logs"
+            }
+          },
+          "queryType": "sql",
+          "rawSql": "SELECT count(timestamp) FROM \"realtime_logs\" \nWHERE   ( timestamp  >= $__fromTime AND timestamp <= $__toTime ) \nAND ( sc_status >= 200 )\nAND ( sc_status <= 399 )",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "${DS_CLICKHOUSE}"
+          },
+          "hide": true,
+          "meta": {
+            "builderOptions": {
+              "fields": [],
+              "limit": 100,
+              "mode": "list"
+            }
+          },
+          "queryType": "sql",
+          "rawSql": "SELECT count(timestamp) FROM \"realtime_logs\" \nWHERE   ( timestamp  >= $__fromTime AND timestamp <= $__toTime ) ",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "__expr__",
+            "uid": "${DS_EXPRESSION}"
+          },
+          "expression": "($A / $B) * 100",
+          "hide": false,
+          "refId": "C",
+          "type": "math"
+        }
+      ],
+      "title": "Success Rate (2xx, 3xx)",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "${DS_CLICKHOUSE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "light-yellow",
+                "value": 1
+              },
+              {
+                "color": "light-orange",
+                "value": 5
+              },
+              {
+                "color": "light-red",
+                "value": 10
+              },
+              {
+                "color": "dark-red",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 11,
+        "y": 1
+      },
+      "id": 10,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.0.2-cloud.1.94a6f396",
+      "targets": [
+        {
+          "builderOptions": {
+            "fields": [],
+            "filters": [
+              {
+                "key": "timestamp",
+                "operator": "WITH IN DASHBOARD TIME RANGE",
+                "type": "datetime"
+              },
+              {
+                "condition": "AND",
+                "filterType": "custom",
+                "key": "sc_status",
+                "operator": "!=",
+                "type": "UInt32",
+                "value": 200
+              }
+            ],
+            "limit": 0,
+            "metrics": [
+              {
+                "aggregation": "count",
+                "field": "timestamp"
+              }
+            ],
+            "mode": "aggregate",
+            "table": "realtime_logs"
+          },
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "${DS_CLICKHOUSE}"
+          },
+          "hide": true,
+          "meta": {
+            "builderOptions": {
+              "fields": [],
+              "filters": [
+                {
+                  "key": "timestamp",
+                  "operator": "WITH IN DASHBOARD TIME RANGE",
+                  "type": "datetime"
+                },
+                {
+                  "condition": "AND",
+                  "filterType": "custom",
+                  "key": "sc_status",
+                  "operator": "!=",
+                  "type": "UInt32",
+                  "value": 200
+                }
+              ],
+              "limit": 0,
+              "metrics": [
+                {
+                  "aggregation": "count",
+                  "field": "timestamp"
+                }
+              ],
+              "mode": "aggregate",
+              "table": "realtime_logs"
+            }
+          },
+          "queryType": "sql",
+          "rawSql": "SELECT count(timestamp) FROM \"realtime_logs\" \nWHERE   ( timestamp  >= $__fromTime AND timestamp <= $__toTime ) \nAND ( sc_status >= 400 )\nAND ( sc_status <= 499 )",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "${DS_CLICKHOUSE}"
+          },
+          "hide": true,
+          "meta": {
+            "builderOptions": {
+              "fields": [],
+              "limit": 100,
+              "mode": "list"
+            }
+          },
+          "queryType": "sql",
+          "rawSql": "SELECT count(timestamp) FROM \"realtime_logs\" \nWHERE   ( timestamp  >= $__fromTime AND timestamp <= $__toTime ) ",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "__expr__",
+            "uid": "${DS_EXPRESSION}"
+          },
+          "expression": "($A / $B) * 100",
+          "hide": false,
+          "refId": "C",
+          "type": "math"
+        }
+      ],
+      "title": "Error Rate (4xx)",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "${DS_CLICKHOUSE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "light-yellow",
+                "value": 1
+              },
+              {
+                "color": "light-orange",
+                "value": 5
+              },
+              {
+                "color": "light-red",
+                "value": 10
+              },
+              {
+                "color": "dark-red",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 17,
+        "y": 1
+      },
+      "id": 11,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.0.2-cloud.1.94a6f396",
+      "targets": [
+        {
+          "builderOptions": {
+            "fields": [],
+            "filters": [
+              {
+                "key": "timestamp",
+                "operator": "WITH IN DASHBOARD TIME RANGE",
+                "type": "datetime"
+              },
+              {
+                "condition": "AND",
+                "filterType": "custom",
+                "key": "sc_status",
+                "operator": "!=",
+                "type": "UInt32",
+                "value": 200
+              }
+            ],
+            "limit": 0,
+            "metrics": [
+              {
+                "aggregation": "count",
+                "field": "timestamp"
+              }
+            ],
+            "mode": "aggregate",
+            "table": "realtime_logs"
+          },
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "${DS_CLICKHOUSE}"
+          },
+          "hide": true,
+          "meta": {
+            "builderOptions": {
+              "fields": [],
+              "filters": [
+                {
+                  "key": "timestamp",
+                  "operator": "WITH IN DASHBOARD TIME RANGE",
+                  "type": "datetime"
+                },
+                {
+                  "condition": "AND",
+                  "filterType": "custom",
+                  "key": "sc_status",
+                  "operator": "!=",
+                  "type": "UInt32",
+                  "value": 200
+                }
+              ],
+              "limit": 0,
+              "metrics": [
+                {
+                  "aggregation": "count",
+                  "field": "timestamp"
+                }
+              ],
+              "mode": "aggregate",
+              "table": "realtime_logs"
+            }
+          },
+          "queryType": "sql",
+          "rawSql": "SELECT count(timestamp) FROM \"realtime_logs\" \nWHERE   ( timestamp  >= $__fromTime AND timestamp <= $__toTime ) \nAND ( sc_status >= 500 )\nAND ( sc_status <= 599 )",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "${DS_CLICKHOUSE}"
+          },
+          "hide": true,
+          "meta": {
+            "builderOptions": {
+              "fields": [],
+              "limit": 100,
+              "mode": "list"
+            }
+          },
+          "queryType": "sql",
+          "rawSql": "SELECT count(timestamp) FROM \"realtime_logs\" \nWHERE   ( timestamp  >= $__fromTime AND timestamp <= $__toTime ) ",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "__expr__",
+            "uid": "${DS_EXPRESSION}"
+          },
+          "expression": "($A / $B) * 100",
+          "hide": false,
+          "refId": "C",
+          "type": "math"
+        }
+      ],
+      "title": "Error Rate (5xx)",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "${DS_CLICKHOUSE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 5,
+        "y": 6
+      },
+      "id": 9,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.0.2-cloud.1.94a6f396",
+      "targets": [
+        {
+          "builderOptions": {
+            "fields": [],
+            "filters": [
+              {
+                "key": "timestamp",
+                "operator": "WITH IN DASHBOARD TIME RANGE",
+                "type": "datetime"
+              }
+            ],
+            "limit": 0,
+            "metrics": [
+              {
+                "aggregation": "count",
+                "field": "timestamp"
+              }
+            ],
+            "mode": "aggregate",
+            "table": "realtime_logs"
+          },
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "${DS_CLICKHOUSE}"
+          },
+          "meta": {
+            "builderOptions": {
+              "fields": [],
+              "limit": 100,
+              "mode": "list"
+            }
+          },
+          "queryType": "builder",
+          "rawSql": "SELECT count(timestamp) FROM \"realtime_logs\" WHERE   ( timestamp  >= $__fromTime AND timestamp <= $__toTime )",
+          "refId": "A"
+        }
+      ],
+      "title": "Total Requests",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "${DS_CLICKHOUSE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 11,
+        "y": 6
+      },
+      "id": 7,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.0.2-cloud.1.94a6f396",
+      "targets": [
+        {
+          "builderOptions": {
+            "fields": [],
+            "filters": [
+              {
+                "key": "timestamp",
+                "operator": "WITH IN DASHBOARD TIME RANGE",
+                "type": "datetime"
+              },
+              {
+                "condition": "AND",
+                "filterType": "custom",
+                "key": "x_edge_result_type",
+                "operator": "=",
+                "type": "String",
+                "value": "Hit"
+              }
+            ],
+            "limit": 0,
+            "metrics": [
+              {
+                "aggregation": "count",
+                "field": "timestamp"
+              }
+            ],
+            "mode": "aggregate",
+            "table": "realtime_logs"
+          },
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "${DS_CLICKHOUSE}"
+          },
+          "meta": {
+            "builderOptions": {
+              "fields": [],
+              "limit": 100,
+              "mode": "list"
+            }
+          },
+          "queryType": "builder",
+          "rawSql": "SELECT count(timestamp) FROM \"realtime_logs\" WHERE   ( timestamp  >= $__fromTime AND timestamp <= $__toTime ) AND ( x_edge_result_type = 'Hit' )",
+          "refId": "A"
+        }
+      ],
+      "title": "Total Hits",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "${DS_CLICKHOUSE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "light-yellow",
+                "value": 1
+              },
+              {
+                "color": "light-orange",
+                "value": 5
+              },
+              {
+                "color": "light-red",
+                "value": 10
+              },
+              {
+                "color": "dark-red",
+                "value": 50
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 17,
+        "y": 6
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.0.2-cloud.1.94a6f396",
+      "targets": [
+        {
+          "builderOptions": {
+            "fields": [],
+            "filters": [
+              {
+                "key": "timestamp",
+                "operator": "WITH IN DASHBOARD TIME RANGE",
+                "type": "datetime"
+              },
+              {
+                "condition": "AND",
+                "filterType": "custom",
+                "key": "sc_status",
+                "operator": "!=",
+                "type": "UInt32",
+                "value": 200
+              }
+            ],
+            "limit": 0,
+            "metrics": [
+              {
+                "aggregation": "count",
+                "field": "timestamp"
+              }
+            ],
+            "mode": "aggregate",
+            "table": "realtime_logs"
+          },
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "${DS_CLICKHOUSE}"
+          },
+          "meta": {
+            "builderOptions": {
+              "fields": [],
+              "limit": 100,
+              "mode": "list"
+            }
+          },
+          "queryType": "builder",
+          "rawSql": "SELECT count(timestamp) FROM \"realtime_logs\" WHERE   ( timestamp  >= $__fromTime AND timestamp <= $__toTime ) AND ( sc_status != 200 )",
+          "refId": "A"
+        }
+      ],
+      "title": "Total Errors",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "${DS_CLICKHOUSE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "dark-red",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 25
+              },
+              {
+                "color": "semi-dark-orange",
+                "value": 50
+              },
+              {
+                "color": "light-orange",
+                "value": 60
+              },
+              {
+                "color": "super-light-yellow",
+                "value": 70
+              },
+              {
+                "color": "super-light-green",
+                "value": 80
+              },
+              {
+                "color": "semi-dark-green",
+                "value": 90
+              },
+              {
+                "color": "dark-green",
+                "value": 100
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 10
+      },
+      "id": 12,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.0.1-cloud.3.f250259e",
+      "targets": [
+        {
+          "builderOptions": {
+            "0": "T",
+            "1": "h",
+            "2": "e",
+            "3": " ",
+            "4": "q",
+            "5": "u",
+            "6": "e",
+            "7": "r",
+            "8": "y",
+            "9": " ",
+            "10": "h",
+            "11": "a",
+            "12": "s",
+            "13": " ",
+            "14": "t",
+            "15": "o",
+            "16": "o",
+            "17": " ",
+            "18": "m",
+            "19": "a",
+            "20": "n",
+            "21": "y",
+            "22": " ",
+            "23": "'",
+            "24": "F",
+            "25": "R",
+            "26": "O",
+            "27": "M",
+            "28": "'",
+            "29": " ",
+            "30": "c",
+            "31": "l",
+            "32": "a",
+            "33": "u",
+            "34": "s",
+            "35": "e",
+            "36": "s",
+            "37": ".",
+            "fields": [],
+            "filters": [
+              {
+                "condition": "AND",
+                "filterType": "custom",
+                "key": "timestamp",
+                "operator": "WITH IN DASHBOARD TIME RANGE",
+                "restrictToFields": [
+                  {
+                    "label": "timestamp",
+                    "name": "timestamp",
+                    "picklistValues": [],
+                    "type": "DateTime"
+                  }
+                ],
+                "type": "datetime"
+              },
+              {
+                "condition": "AND",
+                "filterType": "custom",
+                "key": "sc_status",
+                "operator": "=",
+                "type": "UInt32",
+                "value": 200
+              }
+            ],
+            "groupBy": [],
+            "limit": 0,
+            "metrics": [
+              {
+                "aggregation": "count",
+                "alias": "c",
+                "field": "timestamp"
+              }
+            ],
+            "mode": "trend",
+            "orderBy": [],
+            "table": "realtime_logs",
+            "timeField": "timestamp",
+            "timeFieldType": "DateTime"
+          },
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "${DS_CLICKHOUSE}"
+          },
+          "format": 0,
+          "hide": false,
+          "meta": {
+            "builderOptions": {
+              "0": "T",
+              "1": "h",
+              "2": "e",
+              "3": " ",
+              "4": "q",
+              "5": "u",
+              "6": "e",
+              "7": "r",
+              "8": "y",
+              "9": " ",
+              "10": "h",
+              "11": "a",
+              "12": "s",
+              "13": " ",
+              "14": "t",
+              "15": "o",
+              "16": "o",
+              "17": " ",
+              "18": "m",
+              "19": "a",
+              "20": "n",
+              "21": "y",
+              "22": " ",
+              "23": "'",
+              "24": "F",
+              "25": "R",
+              "26": "O",
+              "27": "M",
+              "28": "'",
+              "29": " ",
+              "30": "c",
+              "31": "l",
+              "32": "a",
+              "33": "u",
+              "34": "s",
+              "35": "e",
+              "36": "s",
+              "37": ".",
+              "fields": [],
+              "filters": [
+                {
+                  "condition": "AND",
+                  "filterType": "custom",
+                  "key": "timestamp",
+                  "operator": "WITH IN DASHBOARD TIME RANGE",
+                  "restrictToFields": [
+                    {
+                      "label": "timestamp",
+                      "name": "timestamp",
+                      "picklistValues": [],
+                      "type": "DateTime"
+                    }
+                  ],
+                  "type": "datetime"
+                },
+                {
+                  "condition": "AND",
+                  "filterType": "custom",
+                  "key": "sc_status",
+                  "operator": "=",
+                  "type": "UInt32",
+                  "value": 200
+                }
+              ],
+              "groupBy": [],
+              "limit": 0,
+              "metrics": [
+                {
+                  "aggregation": "count",
+                  "alias": "c",
+                  "field": "timestamp"
+                }
+              ],
+              "mode": "trend",
+              "orderBy": [],
+              "table": "realtime_logs",
+              "timeField": "timestamp",
+              "timeFieldType": "DateTime"
+            }
+          },
+          "queryType": "sql",
+          "rawSql": "SELECT\n  count(timestamp) AS c,\n  toStartOfInterval(timestamp, INTERVAL (($__toTime - $__fromTime) / 36) SECOND ) AS d\nFROM realtime_logs\nWHERE   ( timestamp  >= $__fromTime AND timestamp <= $__toTime )\nAND x_edge_result_type = 'Hit'\nGROUP BY d\nORDER BY d ASC",
+          "refId": "Hit",
+          "selectedFormat": 0
+        },
+        {
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "${DS_CLICKHOUSE}"
+          },
+          "hide": false,
+          "meta": {
+            "builderOptions": {
+              "fields": [],
+              "limit": 100,
+              "mode": "list"
+            }
+          },
+          "queryType": "sql",
+          "rawSql": "SELECT\n  count(timestamp) AS c,\n  toStartOfInterval(timestamp, INTERVAL (($__toTime - $__fromTime) / 36) SECOND ) AS d\nFROM realtime_logs\nWHERE   ( timestamp  >= $__fromTime AND timestamp <= $__toTime )\nAND x_edge_result_type = 'Miss'\nGROUP BY d\nORDER BY d ASC",
+          "refId": "Miss"
+        }
+      ],
+      "title": "Cache Hit/Miss over time",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "${DS_CLICKHOUSE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 11,
+        "x": 12,
+        "y": 10
+      },
+      "id": 13,
+      "options": {
+        "displayLabels": [],
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true,
+          "values": [
+            "value",
+            "percent"
+          ]
+        },
+        "pieType": "donut",
+        "reduceOptions": {
+          "calcs": [
+            "firstNotNull"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.0.1-cloud.3.f250259e",
+      "targets": [
+        {
+          "builderOptions": {
+            "database": "canopy",
+            "fields": [
+              "sc_status"
+            ],
+            "filters": [
+              {
+                "key": "timestamp",
+                "operator": "WITH IN DASHBOARD TIME RANGE",
+                "type": "datetime"
+              }
+            ],
+            "groupBy": [
+              "status"
+            ],
+            "limit": 0,
+            "mode": "list",
+            "orderBy": [
+              {
+                "name": "status"
+              }
+            ],
+            "table": "realtime_logs"
+          },
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "${DS_CLICKHOUSE}"
+          },
+          "format": 1,
+          "meta": {
+            "builderOptions": {
+              "database": "canopy",
+              "fields": [
+                "sc_status"
+              ],
+              "filters": [
+                {
+                  "key": "timestamp",
+                  "operator": "WITH IN DASHBOARD TIME RANGE",
+                  "type": "datetime"
+                }
+              ],
+              "groupBy": [
+                "status"
+              ],
+              "limit": 0,
+              "mode": "list",
+              "orderBy": [
+                {
+                  "name": "status"
+                }
+              ],
+              "table": "realtime_logs"
+            }
+          },
+          "queryType": "sql",
+          "rawSql": "SELECT \nsc_status as category,\ncount(sc_status)\nFROM canopy.\"realtime_logs\" \nWHERE   ( timestamp  >= $__fromTime AND timestamp <= $__toTime ) \nGROUP BY category\nORDER BY category",
+          "refId": "A",
+          "selectedFormat": 1
+        }
+      ],
+      "title": "HTTP Status code distribution",
+      "transformations": [
+        {
+          "id": "rowsToFields",
+          "options": {
+            "mappings": [
+              {
+                "fieldName": "category",
+                "handlerKey": "field.name"
+              },
+              {
+                "fieldName": "count(sc_status)",
+                "handlerKey": "field.value"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "${DS_CLICKHOUSE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic-by-name"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 85,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "content_bytes"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#ac3e6f",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "client_bytes"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#af8427",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 18
+      },
+      "id": 14,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "builderOptions": {
+            "database": "canopy",
+            "fields": [
+              "timestamp"
+            ],
+            "filters": [
+              {
+                "key": "timestamp",
+                "operator": "WITH IN DASHBOARD TIME RANGE",
+                "type": "datetime"
+              },
+              {
+                "condition": "AND",
+                "key": "x_edge_result_type",
+                "operator": "=",
+                "type": "string",
+                "value": "Hit"
+              }
+            ],
+            "limit": 100,
+            "mode": "list",
+            "table": "realtime_logs"
+          },
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "${DS_CLICKHOUSE}"
+          },
+          "meta": {
+            "builderOptions": {
+              "database": "canopy",
+              "fields": [
+                "timestamp"
+              ],
+              "filters": [
+                {
+                  "key": "timestamp",
+                  "operator": "WITH IN DASHBOARD TIME RANGE",
+                  "type": "datetime"
+                },
+                {
+                  "condition": "AND",
+                  "key": "x_edge_result_type",
+                  "operator": "=",
+                  "type": "string",
+                  "value": "Hit"
+                }
+              ],
+              "limit": 100,
+              "mode": "list",
+              "table": "realtime_logs"
+            }
+          },
+          "queryType": "sql",
+          "rawSql": "SELECT\n  sum(sc_bytes) AS content_bytes,\n  sum(cs_bytes) AS client_bytes,\n  toStartOfInterval(timestamp, INTERVAL (($__toTime - $__fromTime) / 20) SECOND ) AS d\nFROM realtime_logs\nWHERE   ( timestamp  >= $__fromTime AND timestamp <= $__toTime )\nGROUP BY d\nORDER BY d ASC",
+          "refId": "A"
+        }
+      ],
+      "title": "Total Bandwidth (over time)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "${DS_CLICKHOUSE}"
+      },
+      "description": "This table shows a list of the top 10 URIs by request, irrespective of whether the request result was a hit or miss.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 18
+      },
+      "id": 15,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "10.0.2-cloud.1.94a6f396",
+      "targets": [
+        {
+          "builderOptions": {
+            "database": "canopy",
+            "fields": [
+              "cs_uri_stem"
+            ],
+            "filters": [
+              {
+                "condition": "AND",
+                "filterType": "custom",
+                "key": "timestamp",
+                "operator": "WITH IN DASHBOARD TIME RANGE",
+                "restrictToFields": [
+                  {
+                    "label": "timestamp",
+                    "name": "timestamp",
+                    "picklistValues": [],
+                    "type": "DateTime"
+                  }
+                ],
+                "type": "datetime"
+              }
+            ],
+            "groupBy": [
+              "cs_uri_stem"
+            ],
+            "limit": 10,
+            "metrics": [
+              {
+                "aggregation": "count",
+                "alias": "Count",
+                "field": "*"
+              }
+            ],
+            "mode": "aggregate",
+            "orderBy": [
+              {
+                "dir": "DESC",
+                "name": "count(*)"
+              }
+            ],
+            "table": "realtime_logs",
+            "timeField": "",
+            "timeFieldType": "datetime"
+          },
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "${DS_CLICKHOUSE}"
+          },
+          "meta": {
+            "builderOptions": {
+              "database": "canopy",
+              "fields": [
+                "cs_uri_stem"
+              ],
+              "filters": [
+                {
+                  "condition": "AND",
+                  "filterType": "custom",
+                  "key": "timestamp",
+                  "operator": "WITH IN DASHBOARD TIME RANGE",
+                  "restrictToFields": [
+                    {
+                      "label": "timestamp",
+                      "name": "timestamp",
+                      "picklistValues": [],
+                      "type": "DateTime"
+                    }
+                  ],
+                  "type": "datetime"
+                }
+              ],
+              "groupBy": [
+                "cs_uri_stem"
+              ],
+              "limit": 10,
+              "metrics": [
+                {
+                  "aggregation": "count",
+                  "alias": "Count",
+                  "field": "*"
+                }
+              ],
+              "mode": "aggregate",
+              "orderBy": [
+                {
+                  "dir": "DESC",
+                  "name": "count(*)"
+                }
+              ],
+              "table": "realtime_logs",
+              "timeField": "",
+              "timeFieldType": "datetime"
+            }
+          },
+          "queryType": "sql",
+          "rawSql": "SELECT cs_uri_stem URI, count(*) Count FROM canopy.\"realtime_logs\" WHERE   ( timestamp  >= $__fromTime AND timestamp <= $__toTime ) GROUP BY cs_uri_stem ORDER BY count(*) DESC LIMIT 10",
+          "refId": "A"
+        }
+      ],
+      "title": "Top 10 URI By Request",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "${DS_CLICKHOUSE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "x_edge_result_type"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 190
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 26
+      },
+      "id": 1,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "10.0.2-cloud.1.94a6f396",
+      "targets": [
+        {
+          "builderOptions": {
+            "database": "canopy",
+            "fields": [
+              "log",
+              "timestamp"
+            ],
+            "filters": [
+              {
+                "condition": "AND",
+                "filterType": "custom",
+                "key": "timestamp",
+                "operator": "WITH IN DASHBOARD TIME RANGE",
+                "type": "DateTime",
+                "value": "TODAY"
+              }
+            ],
+            "limit": 500,
+            "mode": "list",
+            "orderBy": [
+              {
+                "dir": "ASC",
+                "name": "timestamp"
+              }
+            ],
+            "table": "realtime_logs",
+            "timeField": "timestamp",
+            "timeFieldType": "DateTime"
+          },
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "${DS_CLICKHOUSE}"
+          },
+          "meta": {
+            "builderOptions": {
+              "database": "canopy",
+              "fields": [
+                "log"
+              ],
+              "filters": [],
+              "limit": 100,
+              "mode": "list",
+              "orderBy": [],
+              "table": "realtime_logs"
+            }
+          },
+          "queryType": "builder",
+          "rawSql": "SELECT log, timestamp FROM canopy.\"realtime_logs\" WHERE   ( timestamp  >= $__fromTime AND timestamp <= $__toTime ) ORDER BY timestamp ASC LIMIT 500",
+          "refId": "A"
+        }
+      ],
+      "title": "Canopy Logs",
+      "transformations": [
+        {
+          "id": "extractFields",
+          "options": {
+            "format": "json",
+            "keepTime": false,
+            "replace": false,
+            "source": "log"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "timestamp": false,
+              "timestamp 2": true
+            },
+            "indexByName": {
+              "asn": 1,
+              "c_country": 2,
+              "c_ip": 3,
+              "c_ip_version": 4,
+              "c_port": 5,
+              "cache_behavior_path_pattern": 6,
+              "cs_accept": 7,
+              "cs_accept_encoding": 8,
+              "cs_bytes": 9,
+              "cs_cookie": 10,
+              "cs_header_names": 11,
+              "cs_headers": 12,
+              "cs_headers_count": 13,
+              "cs_host": 14,
+              "cs_method": 15,
+              "cs_protocol": 16,
+              "cs_protocol_version": 17,
+              "cs_referer": 18,
+              "cs_uri_query": 19,
+              "cs_uri_stem": 20,
+              "cs_user_agent": 21,
+              "fle_encrypted_fields": 22,
+              "fle_status": 23,
+              "origin_fbl": 24,
+              "origin_lbl": 25,
+              "primary_distribution_dns_name": 26,
+              "primary_distribution_id": 27,
+              "sc_bytes": 28,
+              "sc_content_len": 29,
+              "sc_content_type": 30,
+              "sc_status": 31,
+              "ssl_cipher": 32,
+              "ssl_protocol": 33,
+              "time_taken": 34,
+              "time_to_first_byte": 35,
+              "timestamp": 0,
+              "x_edge_detailed_result_type": 36,
+              "x_edge_location": 37,
+              "x_edge_request_id": 38,
+              "x_edge_response_result_type": 39,
+              "x_edge_result_type": 40,
+              "x_forwarded_for": 41,
+              "x_host_header": 42
+            },
+            "renameByName": {
+              "timestamp": ""
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "${DS_CLICKHOUSE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-RdYlGr"
+          },
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "dark-red",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 25
+              },
+              {
+                "color": "semi-dark-orange",
+                "value": 50
+              },
+              {
+                "color": "light-orange",
+                "value": 60
+              },
+              {
+                "color": "super-light-yellow",
+                "value": 70
+              },
+              {
+                "color": "super-light-green",
+                "value": 80
+              },
+              {
+                "color": "semi-dark-green",
+                "value": 90
+              },
+              {
+                "color": "dark-green",
+                "value": 100
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 5,
+        "x": 6,
+        "y": 37
+      },
+      "id": 8,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "10.0.2-cloud.1.94a6f396",
+      "targets": [
+        {
+          "builderOptions": {
+            "database": "canopy",
+            "fields": [],
+            "filters": [
+              {
+                "key": "timestamp",
+                "operator": "WITH IN DASHBOARD TIME RANGE",
+                "type": "datetime"
+              },
+              {
+                "condition": "AND",
+                "filterType": "custom",
+                "key": "x_edge_result_type",
+                "operator": "=",
+                "type": "String",
+                "value": "Hit"
+              }
+            ],
+            "limit": 0,
+            "metrics": [
+              {
+                "aggregation": "count",
+                "field": "timestamp"
+              }
+            ],
+            "mode": "aggregate",
+            "orderBy": [],
+            "table": "realtime_logs"
+          },
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "${DS_CLICKHOUSE}"
+          },
+          "hide": true,
+          "meta": {
+            "builderOptions": {
+              "database": "canopy",
+              "fields": [],
+              "filters": [
+                {
+                  "key": "timestamp",
+                  "operator": "WITH IN DASHBOARD TIME RANGE",
+                  "type": "datetime"
+                },
+                {
+                  "condition": "AND",
+                  "filterType": "custom",
+                  "key": "x_edge_result_type",
+                  "operator": "=",
+                  "type": "String",
+                  "value": "Hit"
+                }
+              ],
+              "limit": 0,
+              "metrics": [
+                {
+                  "aggregation": "count",
+                  "field": "timestamp"
+                }
+              ],
+              "mode": "aggregate",
+              "orderBy": [],
+              "table": "realtime_logs"
+            }
+          },
+          "queryType": "sql",
+          "rawSql": "SELECT count(timestamp) FROM canopy.\"realtime_logs\" WHERE   ( timestamp  >= $__fromTime AND timestamp <= $__toTime ) AND ( x_edge_result_type = 'Hit' )",
+          "refId": "A"
+        },
+        {
+          "builderOptions": {
+            "database": "canopy",
+            "fields": [],
+            "limit": 100,
+            "metrics": [],
+            "mode": "list",
+            "orderBy": []
+          },
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "${DS_CLICKHOUSE}"
+          },
+          "hide": true,
+          "meta": {
+            "builderOptions": {
+              "database": "canopy",
+              "fields": [],
+              "limit": 100,
+              "metrics": [],
+              "mode": "list",
+              "orderBy": []
+            }
+          },
+          "queryType": "sql",
+          "rawSql": "SELECT count(timestamp) FROM canopy.\"realtime_logs\" WHERE   ( timestamp  >= $__fromTime AND timestamp <= $__toTime )",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "__expr__",
+            "uid": "${DS_EXPRESSION}"
+          },
+          "expression": "($A / $B) * 100",
+          "hide": false,
+          "refId": "C",
+          "type": "math"
+        }
+      ],
+      "title": "Cache-Hit Ratio",
+      "type": "gauge"
+    }
+  ],
+  "refresh": "30s",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "CDN Logs Overview",
+  "uid": "c065d730-f123-4fcc-ba34-d35fee820840",
+  "version": 52,
+  "weekStart": ""
+}
