@@ -36,10 +36,7 @@
   "liveNow": false,
   "panels": [
     {
-      "datasource": {
-        "type": "grafana-clickhouse-datasource",
-        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-      },
+      "datasource": "ClickHouse",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -132,10 +129,7 @@
             "timeField": "",
             "timeFieldType": "datetime"
           },
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "meta": {
             "builderOptions": {
               "0": "T",
@@ -197,10 +191,7 @@
       "type": "piechart"
     },
     {
-      "datasource": {
-        "type": "grafana-clickhouse-datasource",
-        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-      },
+      "datasource": "ClickHouse",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -248,10 +239,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "meta": {
             "builderOptions": {
               "fields": [],
@@ -274,10 +262,7 @@
       "type": "piechart"
     },
     {
-      "datasource": {
-        "type": "grafana-clickhouse-datasource",
-        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-      },
+      "datasource": "ClickHouse",
       "description": "This graph shows the number of requests for IP addresses over time. ",
       "fieldConfig": {
         "defaults": {
@@ -367,10 +352,7 @@
             "timeField": "timestamp",
             "timeFieldType": "DateTime"
           },
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "meta": {
             "builderOptions": {
               "database": "canopy",
@@ -419,10 +401,7 @@
       "type": "table"
     },
     {
-      "datasource": {
-        "type": "grafana-clickhouse-datasource",
-        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-      },
+      "datasource": "ClickHouse",
       "description": "This graph shows the number of requests for IP addresses over time. ",
       "fieldConfig": {
         "defaults": {
@@ -534,10 +513,7 @@
             "timeField": "timestamp",
             "timeFieldType": "DateTime"
           },
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "queryType": "builder",
           "rawSql": "SELECT $__timeInterval(timestamp) as time, c_ip, count(c_ip) Client_Ip FROM canopy.\"realtime_logs\" WHERE $__timeFilter(timestamp) AND   ( timestamp  >= $__fromTime AND timestamp <= $__toTime ) GROUP BY c_ip, time ORDER BY time ASC LIMIT 100",
           "refId": "A"
@@ -547,10 +523,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "grafana-clickhouse-datasource",
-        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-      },
+      "datasource": "ClickHouse",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -668,10 +641,7 @@
             "timeField": "",
             "timeFieldType": "datetime"
           },
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "meta": {
             "builderOptions": {
               "0": "T",
@@ -733,10 +703,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "grafana-clickhouse-datasource",
-        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-      },
+      "datasource": "ClickHouse",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -781,10 +748,7 @@
       "pluginVersion": "10.0.2-cloud.1.94a6f396",
       "targets": [
         {
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "meta": {
             "builderOptions": {
               "fields": [],
@@ -802,10 +766,7 @@
       "type": "bargauge"
     },
     {
-      "datasource": {
-        "type": "grafana-clickhouse-datasource",
-        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-      },
+      "datasource": "ClickHouse",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -858,10 +819,7 @@
       "pluginVersion": "10.0.2-cloud.1.94a6f396",
       "targets": [
         {
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "meta": {
             "builderOptions": {
               "fields": [],
@@ -878,10 +836,7 @@
       "type": "table"
     },
     {
-      "datasource": {
-        "type": "grafana-clickhouse-datasource",
-        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-      },
+      "datasource": "ClickHouse",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -934,10 +889,7 @@
       "pluginVersion": "10.0.2-cloud.1.94a6f396",
       "targets": [
         {
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "meta": {
             "builderOptions": {
               "fields": [],
@@ -954,10 +906,7 @@
       "type": "table"
     },
     {
-      "datasource": {
-        "type": "grafana-clickhouse-datasource",
-        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-      },
+      "datasource": "ClickHouse",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1023,10 +972,7 @@
       "pluginVersion": "10.0.2-cloud.1.94a6f396",
       "targets": [
         {
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "meta": {
             "builderOptions": {
               "fields": [],
@@ -1043,10 +989,7 @@
       "type": "table"
     },
     {
-      "datasource": {
-        "type": "grafana-clickhouse-datasource",
-        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-      },
+      "datasource": "ClickHouse",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1117,10 +1060,7 @@
       "pluginVersion": "10.0.2-cloud.1.94a6f396",
       "targets": [
         {
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "meta": {
             "builderOptions": {
               "fields": [],
@@ -1139,10 +1079,7 @@
       "type": "barchart"
     },
     {
-      "datasource": {
-        "type": "grafana-clickhouse-datasource",
-        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-      },
+      "datasource": "ClickHouse",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1187,10 +1124,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "meta": {
             "builderOptions": {
               "fields": [],
@@ -1213,10 +1147,7 @@
       "type": "piechart"
     },
     {
-      "datasource": {
-        "type": "grafana-clickhouse-datasource",
-        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-      },
+      "datasource": "ClickHouse",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1261,10 +1192,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "meta": {
             "builderOptions": {
               "fields": [],
@@ -1287,10 +1215,7 @@
       "type": "piechart"
     },
     {
-      "datasource": {
-        "type": "grafana-clickhouse-datasource",
-        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-      },
+      "datasource": "ClickHouse",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1384,10 +1309,7 @@
             "timeField": "",
             "timeFieldType": "datetime"
           },
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "meta": {
             "builderOptions": {
               "0": "T",
@@ -1460,10 +1382,7 @@
       "type": "piechart"
     },
     {
-      "datasource": {
-        "type": "grafana-clickhouse-datasource",
-        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-      },
+      "datasource": "ClickHouse",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1514,10 +1433,7 @@
       "pluginVersion": "10.0.2-cloud.1.94a6f396",
       "targets": [
         {
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "meta": {
             "builderOptions": {
               "fields": [],
