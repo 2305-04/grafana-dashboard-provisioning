@@ -7,6 +7,8 @@ datasources:
       server: clickhouse
       username: default
       tlsSkipVerify: false
+      isDefault: true
+      defaultDatabase: canopy
     secureJsonData:
       editable: true
 
