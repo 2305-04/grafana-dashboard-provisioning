@@ -1,71 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_CLICKHOUSE",
-      "label": "ClickHouse",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "grafana-clickhouse-datasource",
-      "pluginName": "ClickHouse"
-    },
-    {
-      "name": "DS_EXPRESSION",
-      "label": "Expression",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "__expr__"
-    }
-  ],
-  "__elements": {},
-  "__requires": [
-    {
-      "type": "datasource",
-      "id": "__expr__",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "gauge",
-      "name": "Gauge",
-      "version": ""
-    },
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "10.0.2-cloud.1.94a6f396"
-    },
-    {
-      "type": "datasource",
-      "id": "grafana-clickhouse-datasource",
-      "name": "ClickHouse",
-      "version": "3.1.0"
-    },
-    {
-      "type": "panel",
-      "id": "piechart",
-      "name": "Pie chart",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "stat",
-      "name": "Stat",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "table",
-      "name": "Table",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "timeseries",
-      "name": "Time series",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -85,16 +18,16 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": null,
+  "id": 13,
   "links": [
     {
-      "asDropdown": false,
+      "asDropdown": true,
       "icon": "external link",
       "includeVars": false,
       "keepTime": false,
       "tags": [],
       "targetBlank": false,
-      "title": "New link",
+      "title": "Dashboards",
       "tooltip": "",
       "type": "dashboards",
       "url": ""
@@ -103,22 +36,201 @@
   "liveNow": false,
   "panels": [
     {
-      "collapsed": false,
+      "datasource": {
+        "type": "grafana-clickhouse-datasource",
+        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-RdYlGr"
+          },
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "dark-red",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 25
+              },
+              {
+                "color": "semi-dark-orange",
+                "value": 50
+              },
+              {
+                "color": "light-orange",
+                "value": 60
+              },
+              {
+                "color": "super-light-yellow",
+                "value": 70
+              },
+              {
+                "color": "super-light-green",
+                "value": 80
+              },
+              {
+                "color": "semi-dark-green",
+                "value": 90
+              },
+              {
+                "color": "dark-green",
+                "value": 100
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
       "gridPos": {
-        "h": 1,
-        "w": 24,
+        "h": 9,
+        "w": 6,
         "x": 0,
         "y": 0
       },
-      "id": 3,
-      "panels": [],
-      "title": "Stats",
-      "type": "row"
+      "id": 8,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "10.0.2-cloud.1.94a6f396",
+      "targets": [
+        {
+          "builderOptions": {
+            "database": "canopy",
+            "fields": [],
+            "filters": [
+              {
+                "key": "timestamp",
+                "operator": "WITH IN DASHBOARD TIME RANGE",
+                "type": "datetime"
+              },
+              {
+                "condition": "AND",
+                "filterType": "custom",
+                "key": "x_edge_result_type",
+                "operator": "=",
+                "type": "String",
+                "value": "Hit"
+              }
+            ],
+            "limit": 0,
+            "metrics": [
+              {
+                "aggregation": "count",
+                "field": "timestamp"
+              }
+            ],
+            "mode": "aggregate",
+            "orderBy": [],
+            "table": "realtime_logs"
+          },
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
+          },
+          "hide": true,
+          "meta": {
+            "builderOptions": {
+              "database": "canopy",
+              "fields": [],
+              "filters": [
+                {
+                  "key": "timestamp",
+                  "operator": "WITH IN DASHBOARD TIME RANGE",
+                  "type": "datetime"
+                },
+                {
+                  "condition": "AND",
+                  "filterType": "custom",
+                  "key": "x_edge_result_type",
+                  "operator": "=",
+                  "type": "String",
+                  "value": "Hit"
+                }
+              ],
+              "limit": 0,
+              "metrics": [
+                {
+                  "aggregation": "count",
+                  "field": "timestamp"
+                }
+              ],
+              "mode": "aggregate",
+              "orderBy": [],
+              "table": "realtime_logs"
+            }
+          },
+          "queryType": "sql",
+          "rawSql": "SELECT count(timestamp) FROM canopy.\"realtime_logs\" WHERE   ( timestamp  >= $__fromTime AND timestamp <= $__toTime ) AND ( x_edge_result_type = 'Hit' )",
+          "refId": "A"
+        },
+        {
+          "builderOptions": {
+            "database": "canopy",
+            "fields": [],
+            "limit": 100,
+            "metrics": [],
+            "mode": "list",
+            "orderBy": []
+          },
+          "datasource": {
+            "type": "grafana-clickhouse-datasource",
+            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
+          },
+          "hide": true,
+          "meta": {
+            "builderOptions": {
+              "database": "canopy",
+              "fields": [],
+              "limit": 100,
+              "metrics": [],
+              "mode": "list",
+              "orderBy": []
+            }
+          },
+          "queryType": "sql",
+          "rawSql": "SELECT count(timestamp) FROM canopy.\"realtime_logs\" WHERE   ( timestamp  >= $__fromTime AND timestamp <= $__toTime )",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "($A / $B) * 100",
+          "hide": false,
+          "refId": "C",
+          "type": "math"
+        }
+      ],
+      "title": "Cache-Hit Ratio",
+      "type": "gauge"
     },
     {
       "datasource": {
         "type": "grafana-clickhouse-datasource",
-        "uid": "${DS_CLICKHOUSE}"
+        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
       },
       "fieldConfig": {
         "defaults": {
@@ -158,8 +270,8 @@
       "gridPos": {
         "h": 5,
         "w": 6,
-        "x": 5,
-        "y": 1
+        "x": 6,
+        "y": 0
       },
       "id": 16,
       "options": {
@@ -208,7 +320,7 @@
           },
           "datasource": {
             "type": "grafana-clickhouse-datasource",
-            "uid": "${DS_CLICKHOUSE}"
+            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
           },
           "hide": true,
           "meta": {
@@ -247,7 +359,7 @@
         {
           "datasource": {
             "type": "grafana-clickhouse-datasource",
-            "uid": "${DS_CLICKHOUSE}"
+            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
           },
           "hide": true,
           "meta": {
@@ -263,8 +375,9 @@
         },
         {
           "datasource": {
+            "name": "Expression",
             "type": "__expr__",
-            "uid": "${DS_EXPRESSION}"
+            "uid": "__expr__"
           },
           "expression": "($A / $B) * 100",
           "hide": false,
@@ -278,7 +391,7 @@
     {
       "datasource": {
         "type": "grafana-clickhouse-datasource",
-        "uid": "${DS_CLICKHOUSE}"
+        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
       },
       "fieldConfig": {
         "defaults": {
@@ -318,8 +431,8 @@
       "gridPos": {
         "h": 5,
         "w": 6,
-        "x": 11,
-        "y": 1
+        "x": 12,
+        "y": 0
       },
       "id": 10,
       "options": {
@@ -368,7 +481,7 @@
           },
           "datasource": {
             "type": "grafana-clickhouse-datasource",
-            "uid": "${DS_CLICKHOUSE}"
+            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
           },
           "hide": true,
           "meta": {
@@ -407,7 +520,7 @@
         {
           "datasource": {
             "type": "grafana-clickhouse-datasource",
-            "uid": "${DS_CLICKHOUSE}"
+            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
           },
           "hide": true,
           "meta": {
@@ -423,8 +536,9 @@
         },
         {
           "datasource": {
+            "name": "Expression",
             "type": "__expr__",
-            "uid": "${DS_EXPRESSION}"
+            "uid": "__expr__"
           },
           "expression": "($A / $B) * 100",
           "hide": false,
@@ -438,7 +552,7 @@
     {
       "datasource": {
         "type": "grafana-clickhouse-datasource",
-        "uid": "${DS_CLICKHOUSE}"
+        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
       },
       "fieldConfig": {
         "defaults": {
@@ -478,8 +592,8 @@
       "gridPos": {
         "h": 5,
         "w": 6,
-        "x": 17,
-        "y": 1
+        "x": 18,
+        "y": 0
       },
       "id": 11,
       "options": {
@@ -528,7 +642,7 @@
           },
           "datasource": {
             "type": "grafana-clickhouse-datasource",
-            "uid": "${DS_CLICKHOUSE}"
+            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
           },
           "hide": true,
           "meta": {
@@ -567,7 +681,7 @@
         {
           "datasource": {
             "type": "grafana-clickhouse-datasource",
-            "uid": "${DS_CLICKHOUSE}"
+            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
           },
           "hide": true,
           "meta": {
@@ -583,8 +697,9 @@
         },
         {
           "datasource": {
+            "name": "Expression",
             "type": "__expr__",
-            "uid": "${DS_EXPRESSION}"
+            "uid": "__expr__"
           },
           "expression": "($A / $B) * 100",
           "hide": false,
@@ -598,7 +713,7 @@
     {
       "datasource": {
         "type": "grafana-clickhouse-datasource",
-        "uid": "${DS_CLICKHOUSE}"
+        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
       },
       "fieldConfig": {
         "defaults": {
@@ -621,8 +736,8 @@
       "gridPos": {
         "h": 4,
         "w": 6,
-        "x": 5,
-        "y": 6
+        "x": 6,
+        "y": 5
       },
       "id": 9,
       "options": {
@@ -663,7 +778,7 @@
           },
           "datasource": {
             "type": "grafana-clickhouse-datasource",
-            "uid": "${DS_CLICKHOUSE}"
+            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
           },
           "meta": {
             "builderOptions": {
@@ -683,7 +798,7 @@
     {
       "datasource": {
         "type": "grafana-clickhouse-datasource",
-        "uid": "${DS_CLICKHOUSE}"
+        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
       },
       "fieldConfig": {
         "defaults": {
@@ -706,8 +821,8 @@
       "gridPos": {
         "h": 4,
         "w": 6,
-        "x": 11,
-        "y": 6
+        "x": 12,
+        "y": 5
       },
       "id": 7,
       "options": {
@@ -756,7 +871,7 @@
           },
           "datasource": {
             "type": "grafana-clickhouse-datasource",
-            "uid": "${DS_CLICKHOUSE}"
+            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
           },
           "meta": {
             "builderOptions": {
@@ -776,7 +891,7 @@
     {
       "datasource": {
         "type": "grafana-clickhouse-datasource",
-        "uid": "${DS_CLICKHOUSE}"
+        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
       },
       "fieldConfig": {
         "defaults": {
@@ -815,8 +930,8 @@
       "gridPos": {
         "h": 4,
         "w": 6,
-        "x": 17,
-        "y": 6
+        "x": 18,
+        "y": 5
       },
       "id": 4,
       "options": {
@@ -865,7 +980,7 @@
           },
           "datasource": {
             "type": "grafana-clickhouse-datasource",
-            "uid": "${DS_CLICKHOUSE}"
+            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
           },
           "meta": {
             "builderOptions": {
@@ -885,7 +1000,7 @@
     {
       "datasource": {
         "type": "grafana-clickhouse-datasource",
-        "uid": "${DS_CLICKHOUSE}"
+        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
       },
       "fieldConfig": {
         "defaults": {
@@ -973,7 +1088,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 10
+        "y": 9
       },
       "id": 12,
       "options": {
@@ -1073,7 +1188,7 @@
           },
           "datasource": {
             "type": "grafana-clickhouse-datasource",
-            "uid": "${DS_CLICKHOUSE}"
+            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
           },
           "format": 0,
           "hide": false,
@@ -1167,7 +1282,7 @@
         {
           "datasource": {
             "type": "grafana-clickhouse-datasource",
-            "uid": "${DS_CLICKHOUSE}"
+            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
           },
           "hide": false,
           "meta": {
@@ -1188,7 +1303,7 @@
     {
       "datasource": {
         "type": "grafana-clickhouse-datasource",
-        "uid": "${DS_CLICKHOUSE}"
+        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
       },
       "fieldConfig": {
         "defaults": {
@@ -1208,9 +1323,9 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 11,
+        "w": 12,
         "x": 12,
-        "y": 10
+        "y": 9
       },
       "id": 13,
       "options": {
@@ -1266,7 +1381,7 @@
           },
           "datasource": {
             "type": "grafana-clickhouse-datasource",
-            "uid": "${DS_CLICKHOUSE}"
+            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
           },
           "format": 1,
           "meta": {
@@ -1324,7 +1439,7 @@
     {
       "datasource": {
         "type": "grafana-clickhouse-datasource",
-        "uid": "${DS_CLICKHOUSE}"
+        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
       },
       "fieldConfig": {
         "defaults": {
@@ -1414,7 +1529,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 18
+        "y": 17
       },
       "id": 14,
       "options": {
@@ -1456,7 +1571,7 @@
           },
           "datasource": {
             "type": "grafana-clickhouse-datasource",
-            "uid": "${DS_CLICKHOUSE}"
+            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
           },
           "meta": {
             "builderOptions": {
@@ -1494,7 +1609,7 @@
     {
       "datasource": {
         "type": "grafana-clickhouse-datasource",
-        "uid": "${DS_CLICKHOUSE}"
+        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
       },
       "description": "This table shows a list of the top 10 URIs by request, irrespective of whether the request result was a hit or miss.",
       "fieldConfig": {
@@ -1530,7 +1645,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 18
+        "y": 17
       },
       "id": 15,
       "options": {
@@ -1594,7 +1709,7 @@
           },
           "datasource": {
             "type": "grafana-clickhouse-datasource",
-            "uid": "${DS_CLICKHOUSE}"
+            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
           },
           "meta": {
             "builderOptions": {
@@ -1653,7 +1768,7 @@
     {
       "datasource": {
         "type": "grafana-clickhouse-datasource",
-        "uid": "${DS_CLICKHOUSE}"
+        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
       },
       "fieldConfig": {
         "defaults": {
@@ -1673,8 +1788,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1702,7 +1816,7 @@
         "h": 11,
         "w": 24,
         "x": 0,
-        "y": 26
+        "y": 25
       },
       "id": 1,
       "options": {
@@ -1751,7 +1865,7 @@
           },
           "datasource": {
             "type": "grafana-clickhouse-datasource",
-            "uid": "${DS_CLICKHOUSE}"
+            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
           },
           "meta": {
             "builderOptions": {
@@ -1841,197 +1955,6 @@
         }
       ],
       "type": "table"
-    },
-    {
-      "datasource": {
-        "type": "grafana-clickhouse-datasource",
-        "uid": "${DS_CLICKHOUSE}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "continuous-RdYlGr"
-          },
-          "mappings": [],
-          "max": 100,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "dark-red",
-                "value": 0
-              },
-              {
-                "color": "red",
-                "value": 25
-              },
-              {
-                "color": "semi-dark-orange",
-                "value": 50
-              },
-              {
-                "color": "light-orange",
-                "value": 60
-              },
-              {
-                "color": "super-light-yellow",
-                "value": 70
-              },
-              {
-                "color": "super-light-green",
-                "value": 80
-              },
-              {
-                "color": "semi-dark-green",
-                "value": 90
-              },
-              {
-                "color": "dark-green",
-                "value": 100
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 5,
-        "x": 6,
-        "y": 37
-      },
-      "id": 8,
-      "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
-      },
-      "pluginVersion": "10.0.2-cloud.1.94a6f396",
-      "targets": [
-        {
-          "builderOptions": {
-            "database": "canopy",
-            "fields": [],
-            "filters": [
-              {
-                "key": "timestamp",
-                "operator": "WITH IN DASHBOARD TIME RANGE",
-                "type": "datetime"
-              },
-              {
-                "condition": "AND",
-                "filterType": "custom",
-                "key": "x_edge_result_type",
-                "operator": "=",
-                "type": "String",
-                "value": "Hit"
-              }
-            ],
-            "limit": 0,
-            "metrics": [
-              {
-                "aggregation": "count",
-                "field": "timestamp"
-              }
-            ],
-            "mode": "aggregate",
-            "orderBy": [],
-            "table": "realtime_logs"
-          },
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "${DS_CLICKHOUSE}"
-          },
-          "hide": true,
-          "meta": {
-            "builderOptions": {
-              "database": "canopy",
-              "fields": [],
-              "filters": [
-                {
-                  "key": "timestamp",
-                  "operator": "WITH IN DASHBOARD TIME RANGE",
-                  "type": "datetime"
-                },
-                {
-                  "condition": "AND",
-                  "filterType": "custom",
-                  "key": "x_edge_result_type",
-                  "operator": "=",
-                  "type": "String",
-                  "value": "Hit"
-                }
-              ],
-              "limit": 0,
-              "metrics": [
-                {
-                  "aggregation": "count",
-                  "field": "timestamp"
-                }
-              ],
-              "mode": "aggregate",
-              "orderBy": [],
-              "table": "realtime_logs"
-            }
-          },
-          "queryType": "sql",
-          "rawSql": "SELECT count(timestamp) FROM canopy.\"realtime_logs\" WHERE   ( timestamp  >= $__fromTime AND timestamp <= $__toTime ) AND ( x_edge_result_type = 'Hit' )",
-          "refId": "A"
-        },
-        {
-          "builderOptions": {
-            "database": "canopy",
-            "fields": [],
-            "limit": 100,
-            "metrics": [],
-            "mode": "list",
-            "orderBy": []
-          },
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "${DS_CLICKHOUSE}"
-          },
-          "hide": true,
-          "meta": {
-            "builderOptions": {
-              "database": "canopy",
-              "fields": [],
-              "limit": 100,
-              "metrics": [],
-              "mode": "list",
-              "orderBy": []
-            }
-          },
-          "queryType": "sql",
-          "rawSql": "SELECT count(timestamp) FROM canopy.\"realtime_logs\" WHERE   ( timestamp  >= $__fromTime AND timestamp <= $__toTime )",
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "__expr__",
-            "uid": "${DS_EXPRESSION}"
-          },
-          "expression": "($A / $B) * 100",
-          "hide": false,
-          "refId": "C",
-          "type": "math"
-        }
-      ],
-      "title": "Cache-Hit Ratio",
-      "type": "gauge"
     }
   ],
   "refresh": "30s",
@@ -2049,6 +1972,6 @@
   "timezone": "",
   "title": "CDN Logs Overview",
   "uid": "c065d730-f123-4fcc-ba34-d35fee820840",
-  "version": 52,
+  "version": 58,
   "weekStart": ""
 }
