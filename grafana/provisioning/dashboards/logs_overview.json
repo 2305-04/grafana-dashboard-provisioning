@@ -36,10 +36,7 @@
   "liveNow": false,
   "panels": [
     {
-      "datasource": {
-        "type": "grafana-clickhouse-datasource",
-        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-      },
+      "datasource": "ClickHouse",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -144,10 +141,7 @@
             "orderBy": [],
             "table": "realtime_logs"
           },
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "hide": true,
           "meta": {
             "builderOptions": {
@@ -193,10 +187,7 @@
             "mode": "list",
             "orderBy": []
           },
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "hide": true,
           "meta": {
             "builderOptions": {
@@ -228,10 +219,7 @@
       "type": "gauge"
     },
     {
-      "datasource": {
-        "type": "grafana-clickhouse-datasource",
-        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-      },
+      "datasource": "ClickHouse",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -318,10 +306,7 @@
             "mode": "aggregate",
             "table": "realtime_logs"
           },
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "hide": true,
           "meta": {
             "builderOptions": {
@@ -357,10 +342,7 @@
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "hide": true,
           "meta": {
             "builderOptions": {
@@ -389,10 +371,7 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "grafana-clickhouse-datasource",
-        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-      },
+      "datasource": "ClickHouse",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -479,10 +458,7 @@
             "mode": "aggregate",
             "table": "realtime_logs"
           },
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "hide": true,
           "meta": {
             "builderOptions": {
@@ -518,10 +494,7 @@
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "hide": true,
           "meta": {
             "builderOptions": {
@@ -550,10 +523,7 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "grafana-clickhouse-datasource",
-        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-      },
+      "datasource": "ClickHouse",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -640,10 +610,7 @@
             "mode": "aggregate",
             "table": "realtime_logs"
           },
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "hide": true,
           "meta": {
             "builderOptions": {
@@ -679,10 +646,7 @@
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "hide": true,
           "meta": {
             "builderOptions": {
@@ -711,10 +675,7 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "grafana-clickhouse-datasource",
-        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-      },
+      "datasource": "ClickHouse",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -776,10 +737,7 @@
             "mode": "aggregate",
             "table": "realtime_logs"
           },
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "meta": {
             "builderOptions": {
               "fields": [],
@@ -796,10 +754,7 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "grafana-clickhouse-datasource",
-        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-      },
+      "datasource": "ClickHouse",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -869,10 +824,7 @@
             "mode": "aggregate",
             "table": "realtime_logs"
           },
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "meta": {
             "builderOptions": {
               "fields": [],
@@ -889,10 +841,7 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "grafana-clickhouse-datasource",
-        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-      },
+      "datasource": "ClickHouse",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -978,10 +927,7 @@
             "mode": "aggregate",
             "table": "realtime_logs"
           },
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "meta": {
             "builderOptions": {
               "fields": [],
@@ -998,10 +944,7 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "grafana-clickhouse-datasource",
-        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-      },
+      "datasource": "ClickHouse",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1186,10 +1129,7 @@
             "timeField": "timestamp",
             "timeFieldType": "DateTime"
           },
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "format": 0,
           "hide": false,
           "meta": {
@@ -1280,10 +1220,7 @@
           "selectedFormat": 0
         },
         {
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "hide": false,
           "meta": {
             "builderOptions": {
@@ -1301,10 +1238,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "grafana-clickhouse-datasource",
-        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-      },
+      "datasource": "ClickHouse",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1379,10 +1313,7 @@
             ],
             "table": "realtime_logs"
           },
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "format": 1,
           "meta": {
             "builderOptions": {
@@ -1437,10 +1368,7 @@
       "type": "piechart"
     },
     {
-      "datasource": {
-        "type": "grafana-clickhouse-datasource",
-        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-      },
+      "datasource": "ClickHouse",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1569,10 +1497,7 @@
             "mode": "list",
             "table": "realtime_logs"
           },
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "meta": {
             "builderOptions": {
               "database": "canopy",
@@ -1607,10 +1532,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "grafana-clickhouse-datasource",
-        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-      },
+      "datasource": "ClickHouse",
       "description": "This table shows a list of the top 10 URIs by request, irrespective of whether the request result was a hit or miss.",
       "fieldConfig": {
         "defaults": {
@@ -1707,10 +1629,7 @@
             "timeField": "",
             "timeFieldType": "datetime"
           },
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "meta": {
             "builderOptions": {
               "database": "canopy",
@@ -1766,10 +1685,7 @@
       "type": "table"
     },
     {
-      "datasource": {
-        "type": "grafana-clickhouse-datasource",
-        "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-      },
+      "datasource": "ClickHouse",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1863,10 +1779,7 @@
             "timeField": "timestamp",
             "timeFieldType": "DateTime"
           },
-          "datasource": {
-            "type": "grafana-clickhouse-datasource",
-            "uid": "ea954b8a-5c92-4b41-a338-e2eadc568421"
-          },
+          "datasource": "ClickHouse",
           "meta": {
             "builderOptions": {
               "database": "canopy",
